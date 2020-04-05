@@ -121,11 +121,8 @@ extension ItunesMediaController: ItunesDataTableViewCellDelegate {
     func didClickOnFavoriteButton(cell: UITableViewCell) {
         guard let selectedIndexPath = tableView.indexPath(for: cell) else { return }
         let itunesTermModel = resultList[selectedIndexPath.section][selectedIndexPath.row]
-        var isFavorite = itunesTermModel.isFavorite
-        if isFavorite == nil {
-            isFavorite = false
-        }
-        resultList[selectedIndexPath.section][selectedIndexPath.row].isFavorite = !isFavorite!
+        let isFavorite = itunesTermModel.isFavorite ?? false
+        resultList[selectedIndexPath.section][selectedIndexPath.row].isFavorite = !isFavorite
         retainFavoriteiTunesData(resultList[selectedIndexPath.section][selectedIndexPath.row])
         tableView.reloadRows(at: [selectedIndexPath], with: .fade)
     }
@@ -136,13 +133,4 @@ class IndentedLabel: UILabel {
         let insets = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 0)
         super.drawText(in: rect.inset(by: insets))
     }
-}
-
-extension Array where Element : Equatable {
-
-  public mutating func mergeElements<C : Collection>(newElements: C) where C.Iterator.Element == Element{
-    let filteredList = newElements.filter({!self.contains($0)})
-    self.append(contentsOf: filteredList)
-  }
-
 }
