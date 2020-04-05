@@ -11,6 +11,8 @@ import Foundation
 
 class Service {
     
+    let baseUrlString = "https://itunes.apple.com/search?term="
+    
     static let shared = Service()
     
     private init() {}

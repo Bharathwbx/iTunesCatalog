@@ -41,13 +41,13 @@ class ItunesMediaController: UITableViewController {
     }
     
     func setupNavigationBar() {
-        navigationItem.title = "iTunes Track"
+        navigationItem.title = "iTunes Catalog"
         navigationController?.setupNavigationalController()
     }
     
     func getDataFromiTunes(searchText: String) {
-        let baseUrlString = "https://itunes.apple.com/search?term=\(searchText)"
-        guard let url = URL(string: baseUrlString) else {return}
+        let urlString = Service.shared.baseUrlString + searchText
+        guard let url = URL(string: urlString) else { return }
         Service.shared.getDataFromApi(url: url, resultType: ItunesResult.self) { [weak self] (resultModelList, error) in
             if let err = error {
                 print("error occured while fetching the data", err)
