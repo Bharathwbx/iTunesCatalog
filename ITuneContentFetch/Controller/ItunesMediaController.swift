@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ ItunesMediaController is the rootviewcontroller to display the itunes catalog datal.
+
+*/
+
 class ItunesMediaController: UITableViewController {
     
     var resultList = [[ItunesMediaModel]]()
@@ -57,6 +62,8 @@ class ItunesMediaController: UITableViewController {
         }
     }
     
+    /// mergeWithFavoriteList method will compare all the favorite marked catalog and newly received catalog to remove any dupliates using hashable
+
     func mergeWithFavoriteList(_ resultModelList: ItunesResult?) {
         resultList = []
         if let iTunesModelList = resultModelList?.results, iTunesModelList.count > 0 {
@@ -81,6 +88,8 @@ class ItunesMediaController: UITableViewController {
         }
     }
     
+        /// retainFavoriteiTunesData method will save the favorite catalog content in array so that it will be displayed when there is no text entered from the search bar.
+    
     func retainFavoriteiTunesData(_ modifiedItuneModel: ItunesMediaModel) {
         let filterList = favoriteItuneList.filter { $0.kind == modifiedItuneModel.kind && $0.trackId == modifiedItuneModel.trackId }
         if modifiedItuneModel.isFavorite == true, filterList.count == 0 {
@@ -91,6 +100,11 @@ class ItunesMediaController: UITableViewController {
     }
 }
 
+/**
+ Extension ItunesMediaController will set the throttle time to avoid freequent service call for the entered search text. This will wait 0.75 sec to make the service call to get the new catalo data.
+
+*/
+
 extension ItunesMediaController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         timer?.invalidate()
@@ -99,6 +113,12 @@ extension ItunesMediaController: UISearchBarDelegate {
         })
     }
 }
+
+
+/**
+ Extension ItunesMediaController  is added provide the universal link when Get button is clicked from the catalog cell view.
+
+*/
 
 extension ItunesMediaController: ItunesDataTableViewCellDelegate {
     func didClickOnMediaGetButton(cell: UITableViewCell) {
@@ -127,6 +147,11 @@ extension ItunesMediaController: ItunesDataTableViewCellDelegate {
         tableView.reloadRows(at: [selectedIndexPath], with: .fade)
     }
 }
+
+/**
+ IndentedLabel will set the padding for Table section header .
+
+*/
 
 class IndentedLabel: UILabel {
     override func drawText(in rect: CGRect) {

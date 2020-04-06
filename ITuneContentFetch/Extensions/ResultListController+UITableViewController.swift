@@ -8,6 +8,11 @@
 
 import UIKit
 
+/**
+ UITableDataSource and delegate methods are implemented in this extension
+*/
+
+
 extension ItunesMediaController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {

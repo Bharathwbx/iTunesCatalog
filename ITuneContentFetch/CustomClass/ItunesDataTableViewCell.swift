@@ -8,10 +8,18 @@
 
 import UIKit
 
+/**
+ ItunesDataTableViewCellDelegate protocol has been created to notify is there is any actions in table view cell
+*/
+
 protocol ItunesDataTableViewCellDelegate: class {
     func didClickOnFavoriteButton(cell: UITableViewCell)
     func didClickOnMediaGetButton(cell: UITableViewCell)
 }
+
+/**
+ ItunesDataTableViewCell Custom class has been created to dispay the required objects for itunes catalog.
+*/
 
 class ItunesDataTableViewCell: UITableViewCell {
     

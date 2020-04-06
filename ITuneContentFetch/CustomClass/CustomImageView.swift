@@ -6,6 +6,11 @@
 //  Copyright © 2020 Bharatraj Rai. All rights reserved.
 //
 
+/**
+ CustomImageView has been created to cache image and load image to respective thumbnail in iTunesDatatableView cell.
+
+*/
+
 import UIKit
 
 let imageCache = NSCache<NSString, UIImage>()
@@ -14,6 +19,8 @@ class CustomImageView: UIImageView {
     
     var imageUrlString: String?
     
+    /// Thumbnail image is passed from iTunesDatatableViewcell to load image asynchronously
+
     func loadImageUsingUrlString(urlString: String) {
         imageUrlString = urlString
         guard let url = URL(string: urlString) else { return }

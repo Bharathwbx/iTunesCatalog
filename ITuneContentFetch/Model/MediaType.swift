@@ -8,12 +8,10 @@
 
 import Foundation
 
-enum EmployeeType: String {
-    case Executive
-    case SeniorManagement = "Senior Management"
-    case Staff
-    case Intern
-}
+/**
+ MediaType lists the various media which would help in filter the catalog response data and dispay the section header.
+
+*/
 
 enum MediaType: String {
     case Book = "book"
